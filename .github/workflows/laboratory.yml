@@ -1,0 +1,21 @@
+name: Deploy laboratory
+on:
+  push:
+    branches: [ laboratory ]
+    
+permissions:
+  id-token: write
+  contents: read
+  
+jobs:
+  deploy:
+    name: Deploy laboratory
+    uses: davivienda-colombia/davi-coe-reusable-pipeline/.github/workflows/deploy_python_lambda.yml@main
+    with:
+      path-environments-variables: "pipeline/laboratory-task-definition-virginia.json"
+      environment: laboratory
+
+    secrets:
+        DAVI_READER_GITHUB_ACCESS_TOKEN: ${{ secrets.DAVI_READER_GITHUB_ACCESS_TOKEN }}
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        AWS_ROLE_DEPLOY_BACKEND: ${{ secrets.AWS_ROLE_DEPLOY_BACKEND }}

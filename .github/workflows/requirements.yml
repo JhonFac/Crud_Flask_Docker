@@ -1,0 +1,23 @@
+name: Requirements
+
+on:
+  pull_request:
+    branches: [integration, laboratory, main]
+
+jobs:
+  requirements-backend:
+    permissions:
+      id-token: write
+      contents: read
+    uses: davivienda-colombia/davi-coe-reusable-pipeline/.github/workflows/requirements_python_backend.yml@main
+    with:
+      path-environments-variables: "pipeline/integration-env.json pipeline/laboratory-env.json pipeline/production-env.json"
+      requirements-file: ./requirements.txt
+      test-command: pytest --cov=app/ test/ --cov-report xml  --junitxml=pytest-report.xml
+      coverage-file: ./coverage.xml
+      sonar-project-properties-file: ./sonar-project-python.properties
+      lint-command: >
+        pip3 install autopep8 &&
+        python3 -m autopep8 --in-place --recursive *.py &&
+        python3 -m autopep8 --in-place --recursive app
+    secrets: inherit
