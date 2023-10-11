@@ -12,9 +12,6 @@ def get_db():
     If there is no connection, it creates a new one and stores it in the application context.
     """
     if "db" not in g:
-        # g.db = sqlite3.connect(current_app.config.get("SQLALCHEMY_DATABASE_URI"))
-        # g.db.row_factory = sqlite3.Row
-
         try:
             g.db = psycopg2.connect(current_app.config.get("SQLALCHEMY_DATABASE_URI"))
         except psycopg2.OperationalError as e:

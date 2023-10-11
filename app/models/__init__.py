@@ -1,5 +1,7 @@
-from .example_model import ClientModel
+from .customer_model import CustomerModel
+from .product_model import ProductCustomerModel
 
 __all__ = [
-    "ClientModel",
+    "CustomerModel",
+    "ProductCustomerModel",
 ]

@@ -16,3 +16,6 @@ __pycache__/
 venv/
 env/
 pip-lock.txt
+
+# git
+.github

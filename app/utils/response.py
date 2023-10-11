@@ -11,10 +11,7 @@ def success_response(data=None):
     """
     Returns a success response with optional data.
     """
-    response = {"success": True}
-    if data:
-        response["data"] = data
-    return jsonify(response)
+    return jsonify(data)
 
 
 def error_response(message, status_code):
