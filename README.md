@@ -109,3 +109,8 @@ python -m flask run --reload
 docker build -t api:client .
 
 docker run -it --rm -p 8080:80 api:client
+
+
+## Command to run unit tests
+
+python -m unittest discover tests
