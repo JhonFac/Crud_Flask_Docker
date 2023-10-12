@@ -28,16 +28,6 @@ def get_customer_data():
     customId = request.headers.get("X-CustIdentNum")
     typeId = request.headers.get("X-CustIdentType")
     data = customer_controller.get_client(typeId, customId)
-
-    atributos = dir(data)
-    cantidad_de_atributos = len(atributos)
-    print(f"El objeto tiene {cantidad_de_atributos} atributos.")
-    print("objeto ")
-    atributos_y_valores = vars(data)
-    for atributo, valor in atributos_y_valores.items():
-        print(f"Atributo: {atributo}, Valor: {valor}")
-    print()
-    print(customerSchema.dump(data))
     if data:
         return success_response(customerSchema.dump(data))
     return error_response("", 204)
