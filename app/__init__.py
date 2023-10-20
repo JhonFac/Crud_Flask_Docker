@@ -15,15 +15,3 @@ def create_app():
     register_error_handlers(app)
     set_routes(app)
     return app
-
-
-# def create_app(config_name):
-#     app = Flask(__name__)
-#     app.config.from_object(config_name)
-
-#     db.init_app(app)
-
-#     with app.app_context():
-#         db.create_all()
-
-#     return app

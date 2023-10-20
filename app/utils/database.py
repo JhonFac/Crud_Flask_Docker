@@ -14,13 +14,13 @@ def get_db():
     if "db" not in g:
         try:
             g.db = psycopg2.connect(current_app.config.get("SQLALCHEMY_DATABASE_URI"))
-        except psycopg2.OperationalError as e:
+        except psycopg2.OperationalError:
             return abort(500)
 
     return g.db
 
 
-def close_db(e=None):
+def close_db():
     """
     Closes the database connection if it exists.
     """

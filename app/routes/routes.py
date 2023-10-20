@@ -10,12 +10,11 @@ from app.utils.response import error_response, success_response
 
 bp = Blueprint("v1", __name__, url_prefix="/v1/product/client/")
 
-customerSchema = ClientSchema()
-productSchema = ProductDataSchema()
+customer_schema = ClientSchema()
+product_schema = ProductDataSchema()
 
 customer_controller = CustomerController()
 product_controller = ProductController()
-example_schema = ClientSchema()
 
 
 def set_routes(app):
@@ -25,30 +24,20 @@ def set_routes(app):
 @bp.route("/basicInfo", methods=["GET"])
 @require_headers(headers_required)
 def get_customer_data():
-    customId = request.headers.get("X-CustIdentNum")
-    typeId = request.headers.get("X-CustIdentType")
-    data = customer_controller.get_client(typeId, customId)
-
-    atributos = dir(data)
-    cantidad_de_atributos = len(atributos)
-    print(f"El objeto tiene {cantidad_de_atributos} atributos.")
-    print("objeto ")
-    atributos_y_valores = vars(data)
-    for atributo, valor in atributos_y_valores.items():
-        print(f"Atributo: {atributo}, Valor: {valor}")
-    print()
-    print(customerSchema.dump(data))
+    custom_id = request.headers.get("X-CustIdentNum")
+    type_id = request.headers.get("X-CustIdentType")
+    data = customer_controller.get_client(type_id, custom_id)
     if data:
-        return success_response(customerSchema.dump(data))
+        return success_response(customer_schema.dump(data))
     return error_response("", 204)
 
 
 @bp.route("/product", methods=["GET"])
 @require_headers(headers_required)
 def get_product():
-    customId = request.headers.get("X-CustIdentNum")
-    typeId = request.headers.get("X-CustIdentType")
-    data = product_controller.get_product(id_type=typeId, id_num=customId)
+    custom_id = request.headers.get("X-CustIdentNum")
+    type_id = request.headers.get("X-CustIdentType")
+    data = product_controller.get_product(id_type=type_id, id_num=custom_id)
     if data:
-        return success_response(productSchema.dump(data, many=True))
+        return success_response(product_schema.dump(data, many=True))
     return error_response("", 204)

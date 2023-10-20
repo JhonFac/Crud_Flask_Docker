@@ -31,4 +31,4 @@ class TestCustomerSchema(unittest.TestCase):
             self.schema.load(self.json_data)
         except ValidationError as e:
             self.assertIn("client_segment", e.messages)
-            self.assertEqual(e.messages["client_segment"][0], "Not a valid string.")
+            self.assertEqual(e.messages["client_segment"][0], "Unknown field.")

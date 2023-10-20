@@ -3,7 +3,7 @@ from app.models.customer_model import CustomerModel
 
 class CustomerService:
     def __init__(self):
-        self.customerModel = CustomerModel()
+        self.customer_model = CustomerModel()
 
-    def get_by_id(self, typeId, customId):
-        return self.customerModel.get_by_id(typeId, customId)
+    def get_by_id(self, type_id, custom_id):
+        return self.customer_model.get_by_id(type_id, custom_id)

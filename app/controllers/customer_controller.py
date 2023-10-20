@@ -7,7 +7,7 @@ class CustomerController(Resource):
     def __init__(self):
         self.customer_service = CustomerService()
 
-    def get_client(self, typeId: int = None, customId: int = None):
-        if typeId != None and customId != None:
-            return self.customer_service.get_by_id(typeId, customId)
+    def get_client(self, type_id: int = None, custom_id: int = None):
+        if type_id != None and custom_id != None:
+            return self.customer_service.get_by_id(type_id, custom_id)
         return None
